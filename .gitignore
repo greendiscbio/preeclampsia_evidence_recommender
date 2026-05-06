@@ -82,3 +82,11 @@ src/obs_hypertension/screening/scripts/run_llm_filter_on_reviewer_benchmark.py
 # Extraction local outputs/cache
 src/obs_hypertension/extraction/outputs/
 src/obs_hypertension/extraction/**/__pycache__/
+# Standardization local outputs
+src/obs_hypertension/standardization/outputs/
+src/obs_hypertension/standardization/analysis/
+src/obs_hypertension/standardization/**/__pycache__/
+
+# Standardization local analysis scripts
+src/obs_hypertension/standardization/scripts/run_missing_report.py
+src/obs_hypertension/standardization/scripts/run_variability_analysis.py
