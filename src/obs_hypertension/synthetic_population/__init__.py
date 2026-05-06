@@ -1,0 +1,3 @@
+from src.obs_hypertension.synthetic_population.pipeline import generate_synthetic_population_pipeline
+
+__all__ = ["generate_synthetic_population_pipeline"]
