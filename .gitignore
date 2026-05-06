@@ -68,3 +68,14 @@ src/obs_hypertension/filtering/evaluation/
 src/obs_hypertension/filtering/run_test_81_269.py
 src/obs_hypertension/filtering/__pycache__/
 
+# Screening local outputs
+src/obs_hypertension/screening/outputs/
+src/obs_hypertension/screening/**/__pycache__/
+
+# Screening scripts not for github
+src/obs_hypertension/screening/llm/inclusion_filter_json.py
+
+src/obs_hypertension/screening/scripts/run_llm_filter_missing_json.py
+src/obs_hypertension/screening/scripts/run_llm_filter_on_eval_batch.py
+src/obs_hypertension/screening/scripts/run_llm_filter_on_controlled_benchmark.py
+src/obs_hypertension/screening/scripts/run_llm_filter_on_reviewer_benchmark.py
