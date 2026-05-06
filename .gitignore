@@ -79,3 +79,6 @@ src/obs_hypertension/screening/scripts/run_llm_filter_missing_json.py
 src/obs_hypertension/screening/scripts/run_llm_filter_on_eval_batch.py
 src/obs_hypertension/screening/scripts/run_llm_filter_on_controlled_benchmark.py
 src/obs_hypertension/screening/scripts/run_llm_filter_on_reviewer_benchmark.py
+# Extraction local outputs/cache
+src/obs_hypertension/extraction/outputs/
+src/obs_hypertension/extraction/**/__pycache__/
