@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Logs
+logs/
+*.log
+pipeline.log
+
+# Secrets / credentials
+.env
+.env.*
+*.pem
+*.key
+*.json
+credentials*
+token*
+secrets*
+
+# Data / outputs
+ProcessedOutputs/
+Pendiente_limpiar/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.zip
+*.tar
+*.gz
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+logs/
+*.log
+pipeline.log
+
+# Local/archive
+archive/
+
+# Filtering local outputs / evaluation files
+src/obs_hypertension/filtering/outputs/
+src/obs_hypertension/filtering/evaluation/
+src/obs_hypertension/filtering/run_test_81_269.py
+src/obs_hypertension/filtering/__pycache__/
+
