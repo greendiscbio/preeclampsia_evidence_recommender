@@ -90,3 +90,12 @@ src/obs_hypertension/standardization/**/__pycache__/
 # Standardization local analysis scripts
 src/obs_hypertension/standardization/scripts/run_missing_report.py
 src/obs_hypertension/standardization/scripts/run_variability_analysis.py
+# Recommender cache
+src/obs_hypertension/recommender/**/__pycache__/
+
+# Recommender artifacts
+src/obs_hypertension/recommender/**/*.pkl
+src/obs_hypertension/recommender/**/*.joblib
+src/obs_hypertension/recommender/**/*.h5
+src/obs_hypertension/recommender/**/*.pt
+src/obs_hypertension/recommender/**/*.bin
