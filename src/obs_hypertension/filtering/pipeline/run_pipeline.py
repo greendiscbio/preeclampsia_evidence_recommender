@@ -76,7 +76,7 @@ def run_pipeline(
     count_udf = register_stage2_keyword_udfs(df.sparkSession)
 
     df2 = stage2_keyword_density(
-        df,
+        df1,
         count_udf,
         thr_normalized_t=density_threshold
     )
@@ -88,7 +88,7 @@ def run_pipeline(
 
     # ---------- Stage 3 ----------
     df3 = stage3_semantic_distributed(
-         df,
+         df2,
          semantic_query=semantic_query,
          model_name=model_name,
          sim_threshold=sim_threshold
@@ -101,4 +101,4 @@ def run_pipeline(
 
     save_counts(base_output_path, batch_id, counts)
 
-    return df2
+    return df3
