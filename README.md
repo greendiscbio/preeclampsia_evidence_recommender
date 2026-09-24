@@ -1,8 +1,7 @@
-# A Unified AI Framework for Automated Evidence Retrieval and Recommendation-Oriented Decision Support
-
+# An Explainable Artificial Intelligence Framework for Evidence-Guided Clinical Decision Support: A Proof-of-Concept Study in Hypertensive Disorders of Pregnancy
 Official code repository accompanying the scientific manuscript:
 
-> **A Unified AI Framework for Automated Evidence Retrieval and Recommendation-Oriented Decision Support**
+> **An Explainable Artificial Intelligence Framework for Evidence-Guided Clinical Decision Support: A Proof-of-Concept Study in Hypertensive Disorders of Pregnancy**
 
 ---
 
