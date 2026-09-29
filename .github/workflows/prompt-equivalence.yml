@@ -1,0 +1,20 @@
+name: Prompt equivalence
+
+on:
+  push:
+    branches:
+      - reproducibility/block-a-prompts
+  pull_request:
+
+jobs:
+  prompt-equivalence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Verify character-level prompt equivalence
+        run: python -m pytest -q tests/test_prompt_equivalence.py
