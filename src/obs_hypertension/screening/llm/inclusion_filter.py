@@ -8,8 +8,10 @@ from tqdm import tqdm
 
 from src.obs_hypertension.screening.llm.gpt_client import query_gpt
 from src.obs_hypertension.screening.config.llm import REQUEST_SLEEP
-from src.obs_hypertension.screening.config.inclusion_exclusion_prompt import (SYSTEM_PROMPT, 
-                                                                         USER_PROMPT_TEMPLATE)
+from src.obs_hypertension.utils.prompts import (
+    SCREENING_SYSTEM_PROMPT as SYSTEM_PROMPT,
+    SCREENING_USER_PROMPT_TEMPLATE as USER_PROMPT_TEMPLATE,
+)
 
 # ----------------------------
 # Text cleaning helpers
