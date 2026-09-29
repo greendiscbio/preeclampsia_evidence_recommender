@@ -9,6 +9,10 @@ from src.obs_hypertension.extraction.config.openai import (
     MODEL_NAME,
     TEMPERATURE
 )
+from src.obs_hypertension.utils.prompts import (
+    STANDARDIZATION_SYSTEM_PROMPT as SYSTEM_PROMPT,
+    STANDARDIZATION_USER_PROMPT_TEMPLATE as USER_PROMPT_TEMPLATE,
+)
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -38,11 +42,6 @@ def _extract_json(content: str):
 
 
 def query_standardizer(raw_json: dict, max_retries=3):
-
-    from src.obs_hypertension.extraction.config.standardization_prompt import (
-        SYSTEM_PROMPT,
-        USER_PROMPT_TEMPLATE
-    )
 
     # user_prompt = USER_PROMPT_TEMPLATE.format(
     #     raw_json=json.dumps(raw_json, ensure_ascii=False)
