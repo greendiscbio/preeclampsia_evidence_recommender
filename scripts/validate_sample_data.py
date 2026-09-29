@@ -5,15 +5,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pandas as pd
-
-from src.obs_hypertension.recommender.config.defaults import (
-    EFFICIENCY_FEATURE_COLS_COMBO,
-    STRUCTURED_COLS,
-)
 from src.obs_hypertension.recommender.efficiency_scoring.target_builder import (
     define_efficiency_target,
 )
+
+import pandas as pd
+
+
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,7 +76,11 @@ def _validate_category_ohe(
 
 def validate_patients(df: pd.DataFrame, schema: dict) -> None:
     dataset = "synthetic_profiles_sample.csv"
-    _require_columns(df, STRUCTURED_COLS, dataset)
+    _require_columns(
+    df,
+    _structured_cols_from_schema(schema),
+    dataset,
+	)
     _require_columns(df, schema["patient_required_text_columns"], dataset)
     _require_columns(df, schema["patient_required_numeric_columns"], dataset)
     _require_unique_nonempty(df, "patient_id", dataset)
@@ -127,10 +129,18 @@ def _validate_outcomes(df: pd.DataFrame, schema: dict) -> None:
 
 def validate_evidence(df: pd.DataFrame, schema: dict) -> None:
     dataset = "evidence_repository_sample.csv"
-    _require_columns(df, STRUCTURED_COLS, dataset)
+    _require_columns(
+    df,
+    _structured_cols_from_schema(schema),
+    dataset,
+)
     _require_columns(df, schema["evidence_required_text_columns"], dataset)
     _require_columns(df, schema["evidence_required_numeric_columns"], dataset)
-    _require_columns(df, EFFICIENCY_FEATURE_COLS_COMBO, dataset)
+    _require_columns(
+    df,
+    _efficiency_feature_cols_combo_from_schema(schema),
+    dataset,
+)
     _require_unique_nonempty(df, "corpusid", dataset)
     _validate_one_hot_groups(df, schema["structured_groups"], dataset)
     _validate_binary_columns(df, ["is_combination"], dataset)
@@ -162,13 +172,61 @@ def validate_evidence(df: pd.DataFrame, schema: dict) -> None:
 
     _validate_outcomes(df, schema)
 
+def _structured_cols_from_schema(schema: dict) -> list[str]:
+    """Reconstruct the structured feature columns from the sample contract."""
+    return [
+        column
+        for columns in schema["structured_groups"].values()
+        for column in columns
+    ]
+
+
+def _efficiency_feature_cols_combo_from_schema(schema: dict) -> list[str]:
+    """Reconstruct the combination-therapy efficiency feature contract."""
+    structured_cols = _structured_cols_from_schema(schema)
+
+    diagnosis_cols = [
+        f"maternal_clinical_diagnosis__stdcat__{value}"
+        for value in schema["evidence_diagnoses"]
+    ]
+
+    drug_1_cols = [
+        f"drug_1__stdcat__{value}"
+        for value in schema["drugs"]
+    ]
+
+    route_1_cols = [
+        f"route_1__stdcat__{value}"
+        for value in schema["routes"]
+    ]
+
+    drug_2_cols = [
+        f"drug_2__stdcat__{value}"
+        for value in schema["drugs"]
+    ]
+
+    route_2_cols = [
+        f"route_2__stdcat__{value}"
+        for value in schema["routes"]
+    ]
+
+    return (
+        structured_cols
+        + diagnosis_cols
+        + drug_1_cols
+        + route_1_cols
+        + drug_2_cols
+        + route_2_cols
+    
+)
+
 
 def main() -> None:
     with SCHEMA_PATH.open("r", encoding="utf-8") as handle:
         schema = json.load(handle)
-
-    patients = pd.read_csv(PATIENT_PATH)
-    evidence = pd.read_csv(EVIDENCE_PATH)
+    patients = pd.read_csv(PATIENT_PATH, keep_default_na=False)
+    evidence = pd.read_csv(EVIDENCE_PATH, keep_default_na=False)
+    
 
     validate_patients(patients, schema)
     validate_evidence(evidence, schema)
