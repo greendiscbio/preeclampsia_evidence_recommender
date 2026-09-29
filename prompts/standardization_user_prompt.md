@@ -441,7 +441,7 @@ Mean ± SD:
 
 Convert unicode:
 
-\u00b1 → ±
+± → ±
 
 
 Remove units from range fields.
