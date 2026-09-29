@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "description": "Executable contract for the reproducibility sample data. Values mirror the current recommender and synthetic-population code; this file does not define a new scientific schema.",
+  "structured_groups": {
+    "age": ["age_18_20", "age_21_23", "age_24_26", "age_27_29", "age_30_32", "age_33_35", "age_36_38", "age_39_41", "age_42_44"],
+    "gestational_age": ["<20_weeks", "20_33_weeks", ">33_weeks"],
+    "sbp": ["<119_SBP", "120_129_SBP", "130_139_SBP", "140_160_SBP", ">161_SBP"],
+    "dbp": ["<85_DBP", "86_90_DBP", "91_105_DBP", ">106_DBP"]
+  },
+  "diagnoses": ["Severe Preeclampsia/Eclampsia", "Non-severe Preeclampsia", "Severe Gestational Hypertension", "Non-severe Gestational Hypertension", "Antenatal/Peripartum Hypertension", "Chronic Hypertension", "Normotensive"],
+  "evidence_diagnoses": ["Severe Preeclampsia/Eclampsia", "Non-severe Preeclampsia", "Severe Gestational Hypertension", "Non-severe Gestational Hypertension", "Antenatal/Peripartum Hypertension", "Chronic Hypertension", "Normotensive", "not_specified"],
+  "comorbidities": ["None", "chronic hypertension", "gestational diabetes", "chronic kidney disease", "asthma", "AV block", "lupus/antiphospholipid syndrome", "depression", "history of heart disease"],
+  "drugs": ["Labetalol", "Nifedipine", "Methyldopa", "Hydralazine", "Betablockers", "Magnesium sulfate", "Vasodilators", "Other/Adjunct", "Not specified"],
+  "routes": ["IV", "Oral", "IV+Oral", "Other", "Not specified"],
+  "risk_outcome_types": ["risk", "adverse", "safety", "harm"],
+  "profile_outcome_type": "profile",
+  "patient_required_text_columns": ["patient_id", "Maternal_Diagnosis", "Clinical_notes", "Anomaly_1", "Comorbility"],
+  "patient_required_numeric_columns": ["Proteinuria", "SBP_value", "DBP_value", "Age_value", "GA_value"],
+  "evidence_required_text_columns": ["corpusid", "maternal_clinical_diagnosis__stdcat", "drug_1", "route_1", "dose_1", "drug_1__stdcat", "drug_2__stdcat", "winner_1__stdcat", "winner_2__stdcat", "statistical_significance_vs_control"],
+  "evidence_required_numeric_columns": ["is_combination"],
+  "risk_slots": {"maternal": 2, "fetal": 2, "anomaly": 2},
+  "similarity_anomaly_slots": 5,
+  "minimum_evidence_rows_for_efficiency": 25,
+  "sample_expectations": {"patient_rows": 6, "minimum_evidence_rows": 30, "require_both_efficiency_classes": true, "require_risk_outcome": true, "require_profile_anomaly": true}
+}
