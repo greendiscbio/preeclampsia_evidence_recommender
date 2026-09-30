@@ -127,13 +127,15 @@ The efficiency target is constructed from statistical significance and agreement
 
 ## 8. Final recommendation scoring
 
-The current repository defaults for the composite recommendation score are:
+The composite recommendation score uses the definitive weighting configuration reported in the manuscript and encoded as the repository defaults:
 
 | Component | Weight |
 |---|---:|
-| patient/evidence similarity | 0.50 |
-| expected efficiency | 0.30 |
+| patient/evidence similarity | 0.30 |
+| expected efficiency | 0.50 |
 | safety | 0.20 |
+
+Thus, the final score is computed using a relative contribution of 30% similarity, 50% expected efficiency, and 20% safety. These weights are the configuration intended for reproduction of the manuscript experiment.
 
 Additional defaults relevant to ranking and risk/similarity processing are:
 
@@ -145,7 +147,7 @@ Additional defaults relevant to ranking and risk/similarity processing are:
 | maximum anomaly slots used for similarity | 5 |
 | displayed score rounding | 4 decimals |
 
-These values document the current executable defaults. Command-line arguments in the master recommender pipeline may override configurable defaults when explicitly supplied.
+Command-line arguments in the master recommender pipeline may override configurable defaults when explicitly supplied. For reproduction of the manuscript configuration, the weights above should be retained unless an alternative configuration is being evaluated explicitly.
 
 ## 9. Reproducibility boundaries
 
