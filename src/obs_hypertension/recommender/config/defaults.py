@@ -169,8 +169,8 @@ EFFICIENCY_FEATURE_COLS_COMBO: List[str] = STRUCTURED_COLS + [
 # ============================================================
 
 DEFAULT_FINAL_SCORE_WEIGHTS: Dict[str, float] = {
-    "similarity_weight": 0.50,
-    "efficiency_weight": 0.30,
+    "similarity_weight": 0.30,
+    "efficiency_weight": 0.50,
     "safety_weight": 0.20,
 }
 
