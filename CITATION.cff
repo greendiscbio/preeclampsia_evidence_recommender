@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the software and the associated manuscript."
+
+title: "Antihypertensive Evidence Recommender During Pregnancy"
+version: "1.0.0"
+
+authors:
+  - family-names: "Arévalo"
+    given-names: "Juan D."
+
+repository-code: "https://github.com/greendiscbio/preeclampsia_evidence_recommender"
+
+preferred-citation:
+  type: article
+  title: "An Explainable Artificial Intelligence Framework for Evidence-Guided Clinical Decision Support: A Proof-of-Concept Study in Hypertensive Disorders of Pregnancy"
+  authors:
+    - family-names: "Arévalo"
+      given-names: "Juan D."
+    - family-names: "Pagán"
+      given-names: "Josué"
+    - family-names: "Villalaín"
+      given-names: "Cecilia"
+    - family-names: "Herraiz"
+      given-names: "Ignacio"
+    - family-names: "Galindo"
+      given-names: "Alberto"
+    - family-names: "Ayala"
+      given-names: "Jose L."

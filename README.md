@@ -247,7 +247,7 @@ Implements the recommendation-oriented decision support framework.
 | `efficiency_scoring/` | Efficiency estimation models       |
 | `risk_scoring/`       | Risk-aware scoring framework       |
 | `vectorization/`      | Embedding and vector pipelines     |
-| `clinical_review/`    | Clinical validation components     |
+| `clinical_review/`    | Clinical review output components  |
 | `final_orchestrator/` | Final recommendation orchestration |
 | `pipeline/`           | End-to-end recommender execution   |
 | `scripts/`            | Executable recommendation scripts  |
@@ -308,8 +308,8 @@ where:
 ## Clone repository
 
 ```bash
-git clone git@github.com:greendiscbio/obs_hypertension.git
-cd obs_hypertension
+git clone git@github.com:greendiscbio/preeclampsia_evidence_recommender.git
+cd preeclampsia_evidence_recommender
 ```
 
 ## Create virtual environment
@@ -361,7 +361,7 @@ This repository accompanies ongoing research on:
 
 * Automated evidence synthesis
 * Retrieval-augmented recommendation systems
-* Interpretable AI for decision support
+* Transparent, component-level recommendation scoring for decision support
 * Clinical AI pipelines
 * Evidence-driven recommendation frameworks
 * Risk-aware ranking systems
@@ -391,13 +391,13 @@ The repository focuses on providing:
 
 # Citation
 
-If you use this repository or methodology in academic work, please cite:
+If you use this repository or methodology in academic work, please cite the associated manuscript:
 
-```text
-A Unified AI Framework for Automated Evidence Retrieval and Recommendation-Oriented Decision Support
-```
+Juan D. Arévalo, Josué Pagán, Cecilia Villalaín, Ignacio Herraiz, Alberto Galindo, and Jose L. Ayala. *An Explainable Artificial Intelligence Framework for Evidence-Guided Clinical Decision Support: A Proof-of-Concept Study in Hypertensive Disorders of Pregnancy.*
 
-Citation details will be updated after publication.
+The manuscript is currently under review. Final bibliographic details and DOI will be added when available.
+
+Machine-readable citation metadata is provided in [`CITATION.cff`](CITATION.cff).
 
 ---
 
