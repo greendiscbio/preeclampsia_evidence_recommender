@@ -21,6 +21,7 @@ pipeline.log
 # Secrets / credentials
 .env
 .env.*
+!.env.example
 *.pem
 *.key
 *.json
@@ -102,3 +103,5 @@ src/obs_hypertension/recommender/**/*.joblib
 src/obs_hypertension/recommender/**/*.h5
 src/obs_hypertension/recommender/**/*.pt
 src/obs_hypertension/recommender/**/*.bin
+# Local runtime cache
+.cache/

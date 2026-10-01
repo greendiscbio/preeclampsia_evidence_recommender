@@ -1,50 +1,59 @@
-from pathlib import Path
+"""Path configuration for the literature-filtering pipeline."""
 
-# ===========================
-# Raíz lógica del pipeline
-# ===========================
-# Esta carpeta contendrá todo lo necesario para este pipeline.
-# Es independiente del resto del proyecto.
-PIPELINE_ROOT = Path(__file__).resolve().parents[1] # sube 1 nivel desde config/
+from src.obs_hypertension.config import REPOSITORY_ROOT, get_env_path
 
-# Ruta al dataset 0-80
-DATA_0_80 = Path("/home/juandiegoarevalo/TDCS/DATA80/20240326/rawdata/s2orc")
-# Ruta al dataset 81-269
-DATA_81_269 = Path("/home/juandiegoarevalo/TDCS/DataLake/20240326/rawdata/s2orc")
 
-# ===========================
-# Directorios de salida
-# ===========================
-OUTPUT_ROOT = PIPELINE_ROOT / "outputs"  # Carpeta raíz de resultados
+# ---------------------------------------------------------------------
+# External data
+# ---------------------------------------------------------------------
+
+DATA_0_80 = get_env_path("S2ORC_DATA_0_80")
+DATA_81_269 = get_env_path("S2ORC_DATA_81_269")
+
+# ---------------------------------------------------------------------
+# Repository-managed outputs
+# ---------------------------------------------------------------------
+
+PIPELINE_ROOT = REPOSITORY_ROOT / "outputs" / "filtering"
+
+OUTPUT_ROOT = PIPELINE_ROOT
 OUTPUT_BEFORE80 = OUTPUT_ROOT / "before80"
 OUTPUT_AFTER80 = OUTPUT_ROOT / "after80"
 
-# Crear carpetas de salida automáticamente si no existen
-for path in [OUTPUT_ROOT, OUTPUT_BEFORE80, OUTPUT_AFTER80]:
+for path in (OUTPUT_ROOT, OUTPUT_BEFORE80, OUTPUT_AFTER80):
     path.mkdir(parents=True, exist_ok=True)
 
-# ===========================
-# Otros paths opcionales
-# ===========================
-# Modelo de semantic search o embeddings
-#SEMANTIC_MODEL_PATH = PIPELINE_ROOT / "models" / "semantic_model"
 
-# Carpeta para logs
-#LOGS_DIR = PIPELINE_ROOT / "logs"
-#LOGS_DIR.mkdir(parents=True, exist_ok=True)
+# ---------------------------------------------------------------------
+# External/local Spark runtime storage
+# ---------------------------------------------------------------------
 
-# ===========================
-# Summary (opcional, para debug)
-# ===========================
+SPARK_CHECKPOINT_DIR = get_env_path(
+    "SPARK_CHECKPOINT_DIR",
+    REPOSITORY_ROOT / ".cache" / "spark_checkpoints",
+)
+
+
+def require_path(path, variable_name):
+    """Raise a clear error when a required external path is not configured."""
+    if path is None:
+        raise RuntimeError(
+            f"{variable_name} is not configured. "
+            f"Set it in the environment or in a local .env file."
+        )
+
+    if not path.exists():
+        raise FileNotFoundError(
+            f"{variable_name} does not exist: {path}"
+        )
+
+    return path
+
+
 def print_paths_summary():
-    print("Pipeline root:", PIPELINE_ROOT)
+    print("Repository root:", REPOSITORY_ROOT)
     print("Data 0-80:", DATA_0_80)
     print("Data 81-269:", DATA_81_269)
     print("Output before80:", OUTPUT_BEFORE80)
     print("Output after80:", OUTPUT_AFTER80)
-    #print("Semantic model path:", SEMANTIC_MODEL_PATH)
-    #print("Logs dir:", LOGS_DIR)
-
-# Ejemplo de uso:
-# if __name__ == "__main__":
-#     print_paths_summary()
+    print("Spark checkpoint:", SPARK_CHECKPOINT_DIR)

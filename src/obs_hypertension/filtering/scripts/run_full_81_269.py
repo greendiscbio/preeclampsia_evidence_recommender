@@ -1,5 +1,7 @@
 from src.obs_hypertension.filtering.config.paths import (DATA_81_269, 
                                                          OUTPUT_AFTER80,
+                                                         SPARK_CHECKPOINT_DIR,
+                                                         require_path,
                                                          )
 from src.obs_hypertension.filtering.config.semantic import (
     SEMANTIC_QUERY,
@@ -13,13 +15,13 @@ from src.obs_hypertension.filtering.scripts.run_batch import run_batch
 BATCH_SIZE = 10  # ajustable según memoria/GPU
 
 def main():
+    data_dir = require_path(DATA_81_269, "S2ORC_DATA_81_269")
     spark = init_spark(app_name="full_pipeline_81_269")
 
-    spark.sparkContext.setCheckpointDir(
-        "/home/juandiegoarevalo/spark_checkpoints"
-    )
+    SPARK_CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+    spark.sparkContext.setCheckpointDir(str(SPARK_CHECKPOINT_DIR))
 
-    files = sorted(DATA_81_269.glob("*.json.gz"))
+    files = sorted(data_dir.glob("*.json.gz"))
     print(f"[INFO] Total files found: {len(files)}")
 
     if not files:
