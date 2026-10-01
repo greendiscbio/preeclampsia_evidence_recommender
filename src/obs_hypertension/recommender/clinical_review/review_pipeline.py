@@ -95,7 +95,7 @@ def run_clinical_recommendation_review(
     1. Optionally sample synthetic population
     2. Vectorize database and sampled synthetic patients
     3. Run master recommender orchestrator
-    4. Build clinical validation tables
+    4. Build clinical review tables
 
     Parameters
     ----------

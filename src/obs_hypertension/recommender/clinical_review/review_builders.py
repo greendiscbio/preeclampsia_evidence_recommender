@@ -19,7 +19,7 @@ def build_patient_review_df(
     config: ClinicalReviewConfig = ClinicalReviewConfig(),
 ) -> pd.DataFrame:
     """
-    Build patient profile review table for clinical validation.
+    Build patient profile table for clinical review.
 
     Parameters
     ----------
@@ -52,7 +52,7 @@ def build_clinical_recommendations_df(
     config: ClinicalReviewConfig = ClinicalReviewConfig(),
 ) -> pd.DataFrame:
     """
-    Build final recommendation table for clinical validation.
+    Build final recommendation table for clinical review.
 
     Notes
     -----
