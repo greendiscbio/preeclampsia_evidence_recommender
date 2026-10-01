@@ -9,6 +9,8 @@ authors:
     given-names: "Juan D."
 
 repository-code: "https://github.com/greendiscbio/preeclampsia_evidence_recommender"
+url: "https://github.com/greendiscbio/preeclampsia_evidence_recommender"
+abstract: "Research software implementing an evidence-to-recommendation framework for automated scientific evidence retrieval, screening, extraction, standardization, and recommendation-oriented decision support, evaluated as a proof of concept for antihypertensive therapy during pregnancy."
 
 preferred-citation:
   type: article
