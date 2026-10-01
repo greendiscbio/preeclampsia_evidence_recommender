@@ -21,7 +21,7 @@ BATCH_SIZE = 10
 
 
 def main():
-    # 1️⃣ Inicializar Sparkk
+    # 1️⃣ Inicializar Spark
     data_dir = require_path(DATA_0_80, "S2ORC_DATA_0_80")
     spark = init_spark(app_name="full_pipeline_0_80")
 
