@@ -292,14 +292,14 @@ Incorporates adverse outcomes and anomaly severity into the ranking process.
 The final recommendation score is formulated as:
 
 ```text
-Final Score = α(Similarity) + β(Efficiency) − γ(Risk)
+Final Score = α(Similarity) + β(Efficiency) + γ(Safety)
 ```
 
 where:
 
 * Similarity represents cohort compatibility
 * Efficiency estimates expected treatment effectiveness
-* Risk penalizes adverse or unsafe profiles
+* Safety represents the inverse of normalized protocol risk, computed as `Safety = 1 - normalized_risk`
 
 ---
 
