@@ -30,10 +30,10 @@ class ClinicalReviewConfig:
 
     patient_display_cols: Tuple[str, ...] = (
         "patient_id",
-        "maternal_age_years",
-        "gestational_age_weeks",
-        "systolic_bp_mmhg",
-        "diastolic_bp_mmhg",
+        "Age_value",
+        "GA_value",
+        "SBP_value",
+        "DBP_value",
         "Maternal_Diagnosis",
         "Clinical_notes",
         "Anomaly_1",

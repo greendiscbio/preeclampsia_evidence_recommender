@@ -24,7 +24,7 @@ import argparse
 import json
 from pathlib import Path
 from typing import Any, Dict, List
-
+import numpy as np
 import pandas as pd
 
 from src.obs_hypertension.recommender.efficiency_scoring.config import EfficiencyScorerConfig
@@ -56,7 +56,7 @@ from src.obs_hypertension.recommender.config.defaults import (
     DEFAULT_ST_MODEL_NAME,
     DEFAULT_SYNTHETIC_PATH,
     DEFAULT_TOP_N,
-    EFFICIENCY_FEATURE_COLS,
+    EFFICIENCY_FEATURE_COLS_COMBO,
     STRUCTURED_COLS,
 )
 
@@ -100,6 +100,41 @@ def save_dataframe_csv(df: pd.DataFrame, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(path, index=False)
 
+def make_json_serializable(value: Any) -> Any:
+    """
+    Recursively convert common Python / NumPy objects into
+    deterministic JSON-serializable representations.
+    """
+
+    if isinstance(value, dict):
+        return {
+            str(key): make_json_serializable(item)
+            for key, item in value.items()
+        }
+
+    if isinstance(value, (set, frozenset)):
+        return sorted(
+            (make_json_serializable(item) for item in value),
+            key=str,
+        )
+
+    if isinstance(value, (list, tuple)):
+        return [
+            make_json_serializable(item)
+            for item in value
+        ]
+
+    if isinstance(value, Path):
+        return str(value)
+
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+
+    if isinstance(value, np.generic):
+        return value.item()
+
+    return value
+
 
 def save_json(data: Dict[str, Any], path: Path) -> None:
     """
@@ -114,7 +149,12 @@ def save_json(data: Dict[str, Any], path: Path) -> None:
     """
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as file:
-        json.dump(data, file, ensure_ascii=False, indent=2)
+        json.dump(
+            make_json_serializable(data),
+            file,
+            ensure_ascii=False,
+            indent=2,
+         )
 
 
 # ============================================================
@@ -128,6 +168,7 @@ def build_artifacts_summary(outputs: Dict[str, Any]) -> Dict[str, Any]:
     Parameters
     ----------
     outputs : Dict[str, Any]
+
         Output dictionary from run_master_recommender_pipeline.
 
     Returns
@@ -351,7 +392,11 @@ def build_efficiency_config(args: argparse.Namespace) -> EfficiencyScorerConfig:
     Build EfficiencyScorerConfig from CLI args.
     """
     max_depth = None if args.eff_max_depth in (-1, 0) else args.eff_max_depth
-    feature_cols = list(args.efficiency_feature_cols) if args.efficiency_feature_cols else EFFICIENCY_FEATURE_COLS
+    feature_cols = (
+    list(args.efficiency_feature_cols)
+    if args.efficiency_feature_cols
+    else EFFICIENCY_FEATURE_COLS_COMBO
+)
 
     return EfficiencyScorerConfig(
         feature_cols=feature_cols,
@@ -454,9 +499,7 @@ def build_efficiency_kwargs(args: argparse.Namespace) -> Dict[str, Any]:
     """
     Build kwargs for efficiency scoring module.
     """
-    return {
-        "debug": args.debug,
-    }
+    return {}
 
 
 # ============================================================

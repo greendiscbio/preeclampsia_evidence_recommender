@@ -48,6 +48,9 @@ Pendiente_limpiar/
 .DS_Store
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 # Python cache
 __pycache__/
 *.pyc

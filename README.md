@@ -420,3 +420,9 @@ Developed as part of ongoing research on AI-driven evidence synthesis and recomm
 # License
 
 License information will be added upon publication.
+
+## Reproducibility
+
+A bundled end-to-end sample is provided to verify the complete recommender workflow using version-controlled sample inputs.
+
+See [`docs/reproducibility.md`](docs/reproducibility.md) for instructions on validating the sample data, running the recommender, validating the generated artifacts, and executing the automated test suite.

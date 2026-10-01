@@ -92,10 +92,10 @@ def build_clinical_recommendations_df(
     )
 
     final_columns = (
-        list(config.patient_display_cols)
-        + [col for col in config.treatment_display_cols if col in merged.columns]
-        + [col for col in config.score_cols if col in merged.columns]
-    )
+    [col for col in config.patient_display_cols if col in merged.columns]
+    + [col for col in config.treatment_display_cols if col in merged.columns]
+    + [col for col in config.score_cols if col in merged.columns]
+)
 
     out = merged[final_columns].copy()
 
