@@ -1,4 +1,4 @@
-# standardization_code_process/config.py
+
 
 MAX_THERAPIES = 2
 

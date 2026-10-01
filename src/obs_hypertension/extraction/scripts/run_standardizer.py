@@ -1,21 +1,26 @@
-from src.obs_hypertension.extraction.pipeline.standardization_pipeline import run_standardization
-
-INPUT = "/home/juandiegoarevalo/hypertension_project/llm_inclusion_exclusion/outputs/llm_kept_missing.csv"
-
-OUTPUT = "/home/juandiegoarevalo/hypertension_project/llm_standardized_parameters/outputs/standardized_database_json_missing.csv"
+from src.obs_hypertension.extraction.config.paths import (
+    INPUT_CSV,
+    OUTPUT_CSV,
+)
+from src.obs_hypertension.extraction.pipeline.standardization_pipeline import (
+    run_standardization,
+)
 
 
 def main():
+    if not INPUT_CSV.exists():
+        raise FileNotFoundError(
+            f"Screening output not found: {INPUT_CSV}\n"
+            "Run the screening pipeline before extraction."
+        )
+
+    OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
 
     run_standardization(
-
-        INPUT,
-
-        OUTPUT
-
+        str(INPUT_CSV),
+        str(OUTPUT_CSV),
     )
 
 
 if __name__ == "__main__":
-
     main()

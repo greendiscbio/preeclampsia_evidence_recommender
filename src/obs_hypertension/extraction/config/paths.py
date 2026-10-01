@@ -1,12 +1,17 @@
-from pathlib import Path
+"""Path configuration for the extraction pipeline."""
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+from src.obs_hypertension.config import REPOSITORY_ROOT
 
-INPUT_CSV = PROJECT_ROOT / "llm_inclusion_exclusion/outputs/accepted/llm_filtered_all.csv"
 
-OUTPUT_DIR = PROJECT_ROOT / "llm_parameter_extraction/outputs"
-RAW_JSON_DIR = OUTPUT_DIR / "raw_json"
-CSV_DIR = OUTPUT_DIR / "extracted_csv"
+EXTRACTION_OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "extraction"
 
-for p in [RAW_JSON_DIR, CSV_DIR]:
-    p.mkdir(parents=True, exist_ok=True)
+INPUT_CSV = (
+    REPOSITORY_ROOT
+    / "outputs"
+    / "screening"
+    / "llm_kept.csv"
+)
+
+OUTPUT_CSV = EXTRACTION_OUTPUT_ROOT / "standardized_evidence.csv"
+
+EXTRACTION_OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)

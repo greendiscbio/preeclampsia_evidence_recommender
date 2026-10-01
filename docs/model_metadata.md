@@ -137,6 +137,8 @@ The composite recommendation score uses the definitive weighting configuration r
 
 Thus, the final score is computed using a relative contribution of 30% similarity, 50% expected efficiency, and 20% safety. These weights are the configuration intended for reproduction of the manuscript experiment.
 
+Safety is derived from the protocol-level risk score. Raw protocol risk scores are min-max normalized across the evaluated evidence protocols, and safety is defined as `1 - normalized_risk`. Therefore, higher safety values represent lower relative protocol risk within the evaluated evidence set.
+
 Additional defaults relevant to ranking and risk/similarity processing are:
 
 | Parameter | Value |

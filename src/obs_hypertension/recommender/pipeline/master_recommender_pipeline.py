@@ -106,8 +106,8 @@ class MasterRecommenderConfig:
     top_n: int = 3
     preclinical_top_k: int = 20
 
-    similarity_weight: float = 0.50
-    efficiency_weight: float = 0.30
+    similarity_weight: float = 0.30
+    efficiency_weight: float = 0.50
     safety_weight: float = 0.20
 
     protocol_metadata_cols: Tuple[str, ...] = DEFAULT_PROTOCOL_METADATA_COLS
