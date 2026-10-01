@@ -186,18 +186,46 @@ def _recompute_rank(
     score_col: str = "final_score",
 ) -> pd.DataFrame:
     """
-    Recompute dense rank per patient based on descending score.
+    Recompute rank per patient based on descending score.
+
+    Rows without a finite score (e.g. normotensive patients with no
+    antihypertensive recommendation) remain unranked.
     """
+
     if df.empty:
         return df.copy()
 
+    if patient_id_col not in df.columns:
+        raise ValueError(
+            f"Missing patient id column required for ranking: '{patient_id_col}'"
+        )
+
+    if score_col not in df.columns:
+        raise ValueError(
+            f"Missing score column required for ranking: '{score_col}'"
+        )
+
     df_out = df.copy()
-    df_out = df_out.sort_values([patient_id_col, score_col], ascending=[True, False]).copy()
+
+    # Normalize non-finite scores to missing values. These rows represent
+    # outputs that should not receive a therapeutic rank.
+    score_values = pd.to_numeric(df_out[score_col], errors="coerce")
+    score_values = score_values.replace([np.inf, -np.inf], np.nan)
+    df_out[score_col] = score_values
+
+    df_out = df_out.sort_values(
+        [patient_id_col, score_col],
+        ascending=[True, False],
+        na_position="last",
+    ).copy()
+
+    # Pandas nullable integer preserves NA for intentionally unranked rows.
     df_out["rank"] = (
         df_out.groupby(patient_id_col)[score_col]
         .rank(method="first", ascending=False)
-        .astype(int)
+        .astype("Int64")
     )
+
     return df_out
 
 
