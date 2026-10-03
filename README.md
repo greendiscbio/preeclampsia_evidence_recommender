@@ -432,9 +432,15 @@ The associated manuscript was authored by Juan D. Arévalo, Josué Pagán, Cecil
 
 ---
 
+# Funding
+
+This work was supported by the Instituto de Salud Carlos III (ISCIII) under project RD24/0013/0013 and by the Spanish Network in Maternal, Neonatal, Child and Developmental Health Research (RICORS-SAMID), co-funded by the European Union through NextGenerationEU and the Recovery and Resilience Facility (RRF).
+
+---
+
 # License
 
-License information will be added upon publication.
+This project is licensed under the Apache License, Version 2.0. See the [`LICENSE`](LICENSE) file for the full license terms.
 
 ## Reproducibility
 

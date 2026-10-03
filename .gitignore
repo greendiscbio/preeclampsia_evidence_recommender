@@ -105,3 +105,6 @@ src/obs_hypertension/recommender/**/*.pt
 src/obs_hypertension/recommender/**/*.bin
 # Local runtime cache
 .cache/
+
+# Release archival metadata
+!.zenodo.json
