@@ -1,0 +1,28 @@
+{
+  "title": "Antihypertensive Evidence Recommender During Pregnancy",
+  "description": "Research software implementing an evidence-to-recommendation framework for automated scientific evidence retrieval, screening, extraction, standardization, and recommendation-oriented decision support, evaluated as a proof of concept for antihypertensive therapy during pregnancy.",
+  "creators": [
+    {
+      "name": "Arévalo, Juan D.",
+      "orcid": "0009-0001-6600-7681",
+      "affiliation": "Spanish Network in Maternal, Neonatal, Child and Developmental Health Research (RICORS-SAMID) (RD24/0013/0013), Universidad Complutense de Madrid, Madrid, Spain"
+    }
+  ],
+  "version": "1.0.0",
+  "publication_date": "2026-10-07",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "language": "eng",
+  "keywords": [
+    "artificial intelligence",
+    "decision support systems",
+    "evidence synthesis",
+    "information retrieval",
+    "recommender systems",
+    "large language models",
+    "digital health",
+    "hypertension in pregnancy",
+    "maternal health"
+  ]
+}

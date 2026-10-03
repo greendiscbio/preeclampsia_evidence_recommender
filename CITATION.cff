@@ -3,14 +3,30 @@ message: "If you use this software, please cite the software and the associated 
 
 title: "Antihypertensive Evidence Recommender During Pregnancy"
 version: "1.0.0"
+license: "Apache-2.0"
 
 authors:
   - family-names: "Arévalo"
     given-names: "Juan D."
+    orcid: "https://orcid.org/0009-0001-6600-7681"
+    affiliation: "Spanish Network in Maternal, Neonatal, Child and Developmental Health Research (RICORS-SAMID) (RD24/0013/0013), Universidad Complutense de Madrid, Madrid, Spain"
 
 repository-code: "https://github.com/greendiscbio/preeclampsia_evidence_recommender"
 url: "https://github.com/greendiscbio/preeclampsia_evidence_recommender"
 abstract: "Research software implementing an evidence-to-recommendation framework for automated scientific evidence retrieval, screening, extraction, standardization, and recommendation-oriented decision support, evaluated as a proof of concept for antihypertensive therapy during pregnancy."
+
+date-released: 2026-10-07
+
+keywords:
+  - "artificial intelligence"
+  - "decision support systems"
+  - "evidence synthesis"
+  - "information retrieval"
+  - "recommender systems"
+  - "large language models"
+  - "digital health"
+  - "hypertension in pregnancy"
+  - "maternal health"
 
 preferred-citation:
   type: article
